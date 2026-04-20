@@ -1,0 +1,153 @@
+\documentclass[10pt]{article}
+
+% -------------------------
+% PAQUETES
+% -------------------------
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{apacite}
+\usepackage{microtype}
+
+% -------------------------
+% CONFIGURACIÓN DE PÁGINA (según pauta)
+% -------------------------
+\geometry{
+ top=1.5cm,
+ left=1.5cm,
+ right=1.5cm,
+ bottom=2cm
+}
+\setstretch{1.0} % interlineado simple
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% -------------------------
+% FIGURAS / TABLAS (rótulo inferior, numeración consecutiva)
+% -------------------------
+\captionsetup{font=small, labelfont=bf}
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Tabla}
+
+% -------------------------
+% IDENTIFICACIÓN DE GRUPO (arriba, sin ocupar una hoja)
+% -------------------------
+\title{\textbf{Título del trabajo / tarea}}
+
+% Mismos estudiantes que antes
+\author{
+Natalay Huaiquinao, Carlos Ulloa\\
+\texttt{nhuaiquinao2021@alu.uct.cl, carlos.ulloa2020@alu.uct.cl}
+}
+
+% Ajuste del encabezado según lo pedido (Semestre I-2026)
+\date{\vspace{-0.6em}Tarea 1, INFO1184, Semestre I-2026}
+
+% -------------------------
+\begin{document}
+
+\maketitle
+\vspace{-1.0cm}
+
+% -------------------------
+% 2) RESUMEN (150 a 200 palabras)
+% -------------------------
+\begin{abstract}
+Este resumen debe contener entre 150 y 200 palabras. Indique el objetivo de la tarea, el contexto del problema, y el enfoque seguido para resolverlo (por ejemplo: análisis, modelamiento, diseño metodológico paso a paso y validación con evidencias). Resuma los resultados principales, el aporte de la solución (qué mejora o qué permite concluir) y mencione brevemente supuestos o limitaciones relevantes. El texto debe ser claro, conciso y coherente, de modo que el lector comprenda el contenido general del informe sin necesidad de leer el documento completo. Evite definiciones extensas y detalles secundarios; priorice qué se hizo, cómo se hizo y qué se obtuvo. Si se incluyen referencias, utilícelas con moderación.
+\end{abstract}
+
+% -------------------------
+% 3) INTRODUCCIÓN
+% -------------------------
+\section{Introducción}
+Presente el contexto, la problemática y el enunciado del trabajo (preguntas/caso/investigación/ejercicios). Declare el objetivo general y los objetivos específicos. Delimite el alcance y describa la estructura del documento: Fundamentos de teoría, Desarrollo, Discusión y reflexión, Conclusiones, Referencias y Anexo.
+
+% -------------------------
+% 4) FUNDAMENTOS DE TEORÍA
+% -------------------------
+\section{Fundamentos de teoría}
+Explique los conceptos, definiciones y fundamentos necesarios para comprender la solución. Integre revisión bibliográfica y cite en norma APA usando \texttt{apacite}. Ejemplos: \citeA{autorEjemplo2020} o (\citeauthor{autorEjemplo2022}, \citeyear{autorEjemplo2022}). Aclare la notación, el lenguaje técnico utilizado y la forma de representación del problema (modelos, supuestos, variables).
+
+% -------------------------
+% 5) DESARROLLO DEL TRABAJO
+% -------------------------
+\section{Desarrollo del trabajo}
+Desarrolle la solución de forma procedimental, paso a paso, mostrando evidencia y verificación (pruebas, casos, métricas, resultados). En el informe principal no incluya código fuente si existe una implementación computacional; describa el procedimiento y resultados. Si corresponde, agregue scripts o fragmentos importantes solo en el Anexo.
+
+\subsection{Ejemplo de figura (numeración consecutiva + cita si es extraída)}
+\begin{figure}[h]
+    \centering
+    % Reemplace por su archivo real
+    \includegraphics[width=0.85\textwidth]{ejemplo.png}
+    \caption{Título de la figura. (\citeauthor{autorEjemplo2020}, \citeyear{autorEjemplo2020})}
+    \label{fig:ejemplo}
+\end{figure}
+
+\subsection{Ejemplo de tabla (numeración consecutiva + cita si es extraída)}
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+Variable & Descripción & Valor/Ejemplo \\
+\midrule
+V1 & Texto & 123 \\
+V2 & Texto & 456 \\
+\bottomrule
+\end{tabular}
+\caption{Título de la tabla. (\citeauthor{autorEjemplo2020}, \citeyear{autorEjemplo2020})}
+\label{tab:ejemplo}
+\end{table}
+
+\subsection{Ejemplo de ecuación (numeración a la derecha)}
+Si la ecuación proviene de una fuente, menciónela en el texto (p. ej., \citeA{autorEjemplo2022}).
+\begin{equation}
+E = mc^2
+\label{eq:energia}
+\end{equation}
+
+% -------------------------
+% 6) DISCUSIÓN Y REFLEXIÓN
+% -------------------------
+\section{Discusión y reflexión}
+Interprete los resultados y explique el aporte de la solución en base a la metodología/método empleado. Justifique evidencias (qué se evaluó, cómo se verificó, por qué es consistente). Analice limitaciones, fuentes de error, riesgos, y mejoras posibles. Conecte explícitamente la discusión con lo presentado en el Desarrollo.
+
+% -------------------------
+% 7) CONCLUSIONES (por integrante)
+% -------------------------
+\section{Conclusiones}
+
+\subsection*{Conclusión de Natalay Huaiquinao}
+Conclusión individual: qué se logró, evidencia clave, aprendizaje y mejoras propuestas.
+
+\subsection*{Conclusión de Carlos Ulloa}
+Conclusión individual: qué se logró, evidencia clave, aprendizaje y mejoras propuestas.
+
+% -------------------------
+% 8) REFERENCIAS (APA)
+% -------------------------
+\section{Referencias}
+\bibliographystyle{apacite}
+\bibliography{referencias}
+
+% -------------------------
+% 9) ANEXO + BITÁCORA (no cuenta para 5-6 hojas)
+% -------------------------
+\appendix
+\section{Anexo}
+Use esta sección para profundizar el desarrollo, añadir procedimientos relevantes y/o incluir fragmentos importantes de script. También puede incluir un enlace a drive/repositorio (si aplica) para el código completo.
+
+\subsection{Bitácora de trabajo}
+\begin{itemize}
+    \item Día 1 (AAAA-MM-DD): actividades realizadas, decisiones, división de tareas, evidencias.
+    \item Día 2 (AAAA-MM-DD): avances, problemas encontrados, cómo se abordaron, pendientes.
+    \item Día 3 (AAAA-MM-DD): validación, resultados finales, preparación de entrega.
+\end{itemize}
+
+\end{document}
