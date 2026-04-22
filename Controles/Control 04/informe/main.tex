@@ -1,0 +1,327 @@
+\documentclass[10pt]{article}
+
+% -------------------------
+% PAQUETES
+% -------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{listings}  % para insertar el script R
+\usepackage{color}
+
+% Opciones de listings para R
+\lstset{
+  language=R,
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  showstringspaces=false
+}
+
+% -------------------------
+% CONFIGURACIÓN DE PÁGINA (según pauta)
+% -------------------------
+\geometry{
+  top=1.5cm,
+  left=1.5cm,
+  right=1.5cm,
+  bottom=2cm
+}
+
+\setstretch{1.0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% -------------------------
+% CAPTIONS
+% -------------------------
+\captionsetup{font=small, labelfont=bf}
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Tabla}
+
+% -------------------------
+% IDENTIFICACIÓN
+% -------------------------
+\title{\textbf{Control 4 — Análisis de Agrupamiento K-Means sobre Dataset Wine}}
+\author{Nataly Huaiquinao, Carlos Ulloa\\
+\texttt{nhuaiquinao2021@alu.uct.cl, carlos.ulloa2020@alu.uct.cl}}
+\date{\vspace{-0.6em}Control 4, INFO1184, Semestre I-2026}
+
+% -------------------------
+\begin{document}
+
+\maketitle
+\vspace{-1.0cm}
+
+% -------------------------
+% RESUMEN
+% -------------------------
+\begin{abstract}
+Este trabajo aplica el algoritmo K-Means al dataset Wine (178 instancias, 13 atributos químicos)
+para determinar el número óptimo de agrupamientos en el rango $k \in [2,15]$.
+En la Pregunta~1 se analiza exclusivamente la geometría de los centroides: se calculan las
+distancias euclidianas mínimas entre ellos en el espacio estandarizado y se proyectan los datos
+mediante PCA para su visualización. La evidencia numérica muestra que en $k=3$ se produce
+el primer quiebre significativo de la distancia mínima, los centroides exhiben perfiles químicos
+claramente diferenciados y la proyección PCA confirma agrupamientos cohesionados y separados.
+La Pregunta~2, que emplea el método del codo (SSE vs.\ $k$), se desarrollará en una etapa
+posterior.
+\end{abstract}
+
+% -------------------------
+% INTRODUCCIÓN
+% -------------------------
+\section{Introducción}
+
+El dataset Wine reúne resultados de análisis químico de 178 vinos italianos provenientes de
+tres cultivares distintos, descritos mediante 13 variables continuas (alcohol, acidez málica,
+ceniza, alcalinidad, magnesio, fenoles totales, flavanoides, fenoles no flavanoides,
+proantocianinas, intensidad de color, matiz, OD280/OD315 y prolina)
+\cite{forina1991wine}.
+El objetivo del control es explorar la estructura de agrupamiento latente en estos datos,
+sin utilizar las etiquetas originales de clase.
+
+La Pregunta~1 aborda la determinación del número óptimo de clústeres $k$ basándose
+\textit{únicamente} en el análisis de centroides: sus valores por variable, las distancias
+euclidianas entre ellos y las proyecciones bidimensionales obtenidas mediante Análisis de
+Componentes Principales (PCA).
+La Pregunta~2 —pendiente— aplicará el método del codo (SSE vs.\ $k$).
+
+El informe se organiza en: Desarrollo (Preguntas~1 y~2), Reflexión, Referencias y Anexo.
+
+% -------------------------
+% DESARROLLO
+% -------------------------
+\section{Desarrollo}
+
+\subsection{Pregunta 1: Determinación del k óptimo mediante análisis de centroides}
+
+\subsubsection{Preprocesamiento}
+
+Los 13 atributos del dataset fueron estandarizados (media~0, desviación~1) antes de aplicar
+K-Means, siguiendo la recomendación explícita de \citeauthor{forina1991wine}
+(\citeyear{forina1991wine}) de normalizar las variables para algoritmos no invariantes a la
+escala \cite{scikit2011}.
+El algoritmo se ejecutó con \texttt{n\_init=20} y semilla fija (\texttt{random\_state=42})
+para garantizar reproducibilidad.
+
+\subsubsection{Distancias mínimas entre centroides}
+
+Para cada valor de $k$ se calculó la distancia euclidiana mínima entre todos los pares de
+centroides en el espacio estandarizado.
+Una distancia mínima alta indica que los centroides están bien separados entre sí;
+una caída abrupta revela que al agregar un nuevo clúster, al menos dos centroides quedan
+muy próximos, evidenciando solapamiento o fragmentación artificial.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{cccc}
+\toprule
+$k$ & Dist.\ mín.\ (escalado) & Dist.\ media (escalado) & SSE \\
+\midrule
+2  & 3.8382 & 3.8382 & 1658.76 \\
+\textbf{3}  & \textbf{3.5964} & \textbf{4.1995} & \textbf{1277.93} \\
+4  & 2.6674 & 3.9188 & 1175.35 \\
+5  & 2.5663 & 3.7957 & 1107.01 \\
+6  & 2.5259 & 4.0859 & 1046.00 \\
+7  & 2.2928 & 4.4714 &  981.60 \\
+8  & 2.2787 & 4.3725 &  935.20 \\
+9  & 2.1641 & 4.3686 &  889.89 \\
+10 & 1.8279 & 4.3617 &  845.90 \\
+11 & 1.8601 & 4.6127 &  825.86 \\
+12 & 1.7293 & 4.3725 &  791.30 \\
+13 & 1.8862 & 4.4492 &  767.56 \\
+14 & 1.7694 & 4.5186 &  742.32 \\
+15 & 1.8438 & 4.5515 &  720.50 \\
+\bottomrule
+\end{tabular}
+\caption{Distancias euclidianas entre centroides y SSE para $k = 2\ldots15$.
+         Las distancias se calculan en el espacio estandarizado.}
+\label{tab:distancias}
+\end{table}
+
+La Tabla~\ref{tab:distancias} muestra que la distancia mínima presenta su caída más pronunciada
+entre $k=3$ (3.5964) y $k=4$ (2.6674), una reducción de $\approx 0.91$ unidades.
+Para $k > 4$ la distancia mínima sigue decreciendo, pero con incrementos de $0.01$–$0.33$
+unidades, sin un quiebre comparable.
+La Fig.~\ref{fig:dist} ilustra este comportamiento.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.80\textwidth]{fig1_distancia_centroides.png}
+  \caption{Distancia euclidiana mínima entre centroides en el espacio estandarizado vs.\ $k$.
+           La línea roja señala $k=3$, punto del primer quiebre relevante.}
+  \label{fig:dist}
+\end{figure}
+
+\subsubsection{Centroides en espacio original para k=3}
+
+La Tabla~\ref{tab:centroides3} muestra los valores medios de cada variable para los tres
+centroides obtenidos con $k=3$.
+
+\begin{table}[h]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccccccccccc}
+\toprule
+ & Alc. & AcM. & Cen. & AlcCen. & Mg & FenT. & Flav. & FNF & ProAnt & IntCol. & Mat. & OD & Prol. \\
+\midrule
+C1 & 12.25 & 1.90 & 2.23 & 20.06 & 92.74  & 2.25 & 2.05 & 0.358 & 1.62 & 2.97 & 1.06 & 2.80 & 510  \\
+C2 & 13.13 & 3.31 & 2.42 & 21.24 & 98.67  & 1.68 & 0.82 & 0.452 & 1.15 & 7.24 & 0.69 & 1.70 & 619  \\
+C3 & 13.68 & 2.00 & 2.47 & 17.46 & 107.97 & 2.85 & 3.00 & 0.292 & 1.92 & 5.45 & 1.07 & 3.16 & 1100 \\
+\bottomrule
+\end{tabular}
+\caption{Centroides de $k=3$ en el espacio original (valores medios por variable).
+         Abreviaturas: Alc.=Alcohol, AcM.=Ácido Málico, Cen.=Ceniza, AlcCen.=Alcalinidad Ceniza,
+         Mg=Magnesio, FenT.=Fenoles Totales, Flav.=Flavanoides, FNF=Fen.\ No Flavanoides,
+         ProAnt=Proantocianinas, IntCol.=Intensidad Color, Mat.=Matiz, OD=OD280/OD315, Prol.=Prolina.}
+\label{tab:centroides3}
+\end{table}
+
+Las distancias euclidianas entre los tres centroides en el espacio escalado son:
+
+\begin{equation}
+  d(C_1, C_2) = 3.9731, \quad d(C_1, C_3) = 3.5964, \quad d(C_2, C_3) = 5.0289
+  \label{eq:dist3}
+\end{equation}
+
+Los tres valores son mayores a 3.5, lo que confirma una separación geométrica sustancial.
+Cada centroide posee un perfil químico diferenciado: $C_1$ presenta baja prolina (510),
+baja intensidad de color (2.97) y flavanoides intermedios; $C_2$ muestra alta acidez málica
+(3.31), alta intensidad de color (7.24) y muy bajos flavanoides (0.82); $C_3$ se distingue
+por el mayor contenido de alcohol (13.68), prolina elevada (1100) y flavanoides altos (3.00).
+
+\subsubsection{Visualizaciones}
+
+La Fig.~\ref{fig:pca3} proyecta los datos y centroides de $k=3$ sobre los dos primeros
+componentes principales (varianza explicada: 55.4\%).
+Los tres grupos aparecen cohesionados y con escaso solapamiento.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.72\textwidth]{fig2_pca_k3.png}
+  \caption{Proyección PCA (PC1 vs.\ PC2) de los datos del dataset Wine con $k=3$.
+           Las estrellas negras representan los centroides de cada clúster.}
+  \label{fig:pca3}
+\end{figure}
+
+La Fig.~\ref{fig:comp} compara las particiones para $k = 2, 3, 4, 5$.
+Se observa que $k=2$ fusiona grupos con diferente perfil químico; en $k=4$ y $k=5$ comienzan
+a generarse particiones dentro de regiones que ya estaban cohesionadas en $k=3$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.88\textwidth]{fig3_comparacion_k.png}
+  \caption{Proyección PCA para $k \in \{2, 3, 4, 5\}$.
+           Las estrellas representan los centroides de cada configuración.}
+  \label{fig:comp}
+\end{figure}
+
+\subsubsection{Conclusión Pregunta 1}
+
+Con base en el análisis de centroides, el número óptimo de agrupamientos es $\mathbf{k=3}$.
+Los argumentos son: (i) la distancia mínima entre centroides experimenta su mayor caída al
+pasar de $k=3$ a $k=4$ ($3.5964 \to 2.6674$, diferencia $\approx 0.91$); (ii) los tres
+centroides poseen perfiles químicos distintos y bien separados (ec.~\ref{eq:dist3});
+(iii) la proyección PCA confirma grupos compactos y no solapados.
+Además, $k=3$ coincide con el número real de cultivares del dataset, lo que respalda
+la validez de la solución encontrada.
+
+% -------------------------
+\subsection{Pregunta 2: Determinación del k óptimo mediante el método del codo}
+
+\textit{Esta sección se completará en una etapa posterior.
+La estructura base se conserva para facilitar la incorporación de resultados.}
+
+\subsubsection{Tabla SSE para $k = 2\ldots15$}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\toprule
+$k$ & SSE (WCSS) \\
+\midrule
+\multicolumn{2}{c}{\textit{[Completar con resultados]}} \\
+\bottomrule
+\end{tabular}
+\caption{SSE (Within-Cluster Sum of Squares) para $k = 2\ldots15$.}
+\label{tab:sse}
+\end{table}
+
+\subsubsection{Gráfica del codo (SSE vs.\ k)}
+
+\begin{figure}[h]
+  \centering
+  % Reemplazar con la gráfica del codo generada
+  \fbox{\parbox{0.6\textwidth}{\centering\vspace{2cm}\textit{[Insertar gráfica SSE vs.\ k]}\vspace{2cm}}}
+  \caption{Gráfica del codo: SSE vs.\ número de clústeres $k$.}
+  \label{fig:codo}
+\end{figure}
+
+\subsubsection{Interpretación}
+
+\textit{[Completar con la identificación del quiebre visual y su justificación numérica.]}
+
+% -------------------------
+% REFLEXIÓN
+% -------------------------
+\section{Reflexión}
+
+El análisis de centroides propuesto en la Pregunta~1 resultó ser un criterio geométrico
+robusto: la distancia mínima entre centroides detecta de forma clara el punto en que
+agregar un clúster adicional ya no mejora significativamente la separación de los grupos
+existentes, sino que fragmenta regiones compactas.
+La coincidencia entre el $k=3$ sugerido por este criterio y las tres clases reales del
+dataset valida el enfoque, aunque cabe destacar que en un escenario real las etiquetas
+no estarían disponibles.
+
+Una limitación del criterio empleado es su sensibilidad a la escala: sin estandarización,
+variables como la Prolina (rango $[278, 1680]$) dominarían las distancias y distorsionarían
+los resultados.
+Como mejora futura, se podría complementar el análisis de centroides con métricas internas
+como el índice de Calinski-Harabász, que también se basa en la dispersión entre e
+intra-clúster sin requerir etiquetas externas.
+
+% -------------------------
+% REFERENCIAS
+% -------------------------
+\section{Referencias}
+\bibliographystyle{apalike}
+\bibliography{referencias}
+
+% -------------------------
+% ANEXO
+% -------------------------
+\appendix
+\section{Anexo}
+
+\subsection{Script R (archivo insertado)}
+% Inserta el script R directamente desde el archivo de trabajo
+% ruta relativa desde este archivo: ../Problema.R
+\lstinputlisting[language=R]{Problema.R}
+
+\subsection{Bitácora de trabajo}
+\begin{itemize}
+  \item 2026-04-22: Lectura del enunciado, carga y exploración del dataset Wine.
+        Estandarización de variables y ejecución de K-Means para $k=2\ldots15$.
+        Cálculo de distancias entre centroides e identificación de $k=3$ como óptimo.
+        Generación de figuras PCA y redacción del informe.
+  \item \textit{[Completar con sesiones adicionales al incorporar Pregunta 2.]}
+\end{itemize}
+
+\end{document}

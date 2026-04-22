@@ -7,7 +7,7 @@ Repositorio personal para organizar **tareas** y **controles** del ramo **INFO11
 - `Tareas/`  
   Entregas y desarrollos asociados a tareas (datasets, scripts, informes, dashboards).
 
-- `Controles/` *(si aplica / recomendado)*  
+- `Controles/`
   Material y soluciones de controles (enunciados, respuestas, notebooks, etc.).
 
 ## Convenciones sugeridas
