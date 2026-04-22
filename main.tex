@@ -1,0 +1,128 @@
+    \documentclass[10pt]{article}
+
+% -------------------------
+% PAQUETES
+% -------------------------
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{apacite}
+
+% -------------------------
+% CONFIGURACIÓN DE PÁGINA (según pauta)
+% -------------------------
+\geometry{
+ top=1.5cm,
+ left=1.5cm,
+ right=1.5cm,
+ bottom=2cm
+}
+
+\setstretch{1.0} % interlineado simple
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% -------------------------
+% CAPTIONS (Fig. N. / Tabla N. debajo)
+% -------------------------
+\captionsetup{font=small, labelfont=bf}
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Tabla}
+
+% -------------------------
+% DATOS (Identificación superior, no ocupa hoja)
+% -------------------------
+\title{\textbf{Título del Trabajo / Control}}
+\author{Natalay Huaiquinao, Carlos Ulloa\\
+\texttt{nhuaiquinao2021@alu.uct.cl, carlos.ulloa2020@alu.uct.cl}}
+\date{\vspace{-0.6em}Control 1, INFO1184, Semestre I-2026}
+
+% -------------------------
+\begin{document}
+
+\maketitle
+\vspace{-1.0cm}
+
+% -------------------------
+% 2) RESUMEN (100 a 130 palabras)
+% -------------------------
+\begin{abstract}
+Este resumen debe contener entre 100 y 130 palabras. Incluya el objetivo del control, la metodología o estrategia utilizada para abordar el problema (por ejemplo: análisis de requerimientos, diseño de solución paso a paso, validación con casos de prueba), los resultados principales obtenidos y la conclusión más relevante. Debe ser claro y directo, permitiendo comprender el aporte del trabajo sin leer el documento completo. Evite definiciones extensas y detalles secundarios; priorice qué se hizo, cómo se hizo y qué se obtuvo. Si corresponde, mencione brevemente el alcance y limitaciones del desarrollo realizado.
+\end{abstract}
+
+% -------------------------
+% 3) INTRODUCCIÓN
+% -------------------------
+\section{Introducción}
+Aquí se presenta el contexto del problema y la problemática abordada. Incluya (según corresponda) preguntas de investigación, caso de estudio o enunciado del ejercicio. Indique objetivos (general y específicos) y describa brevemente la estructura del informe (Introducción, Desarrollo, Reflexión, Referencias y Anexo).
+
+% -------------------------
+% 4) DESARROLLO
+% -------------------------
+\section{Desarrollo}
+Desarrolle la solución paso a paso, integrando contenidos vistos en clases y, si aplica, lecturas y dos fuentes de referencia. Explique supuestos, decisiones y validación con ejemplos.
+
+\subsection{Ejemplo de figura (numeración consecutiva y rótulo inferior)}
+\begin{figure}[h]
+    \centering
+    % Reemplace ejemplo.png por su imagen real
+    \includegraphics[width=0.8\textwidth]{ejemplo.png}
+    \caption{Título de la figura. (\citeauthor{autorEjemplo2020}, \citeyear{autorEjemplo2020})}
+    \label{fig:ejemplo}
+\end{figure}
+
+\subsection{Ejemplo de tabla (numeración consecutiva y rótulo inferior)}
+\begin{table}[h]
+\centering
+\begin{tabular}{ccc}
+\toprule
+Columna 1 & Columna 2 & Columna 3 \\
+\midrule
+Dato 1 & Dato 2 & Dato 3 \\
+\bottomrule
+\end{tabular}
+\caption{Título de la tabla. (\citeauthor{autorEjemplo2020}, \citeyear{autorEjemplo2020})}
+\label{tab:ejemplo}
+\end{table}
+
+\subsection{Ejemplo de ecuación (numeración a la derecha)}
+La ecuación debe ir numerada automáticamente. Si proviene de una fuente, menciónela en el texto.
+\begin{equation}
+E = mc^2
+\label{eq:energia}
+\end{equation}
+
+% -------------------------
+% 5) REFLEXIÓN
+% -------------------------
+\section{Reflexión}
+Justifique las decisiones tomadas (por ejemplo: elección de metodología, estructura de la solución, herramientas utilizadas, criterios de validación). Analice resultados, dificultades, mejoras posibles y una reflexión crítica del proceso (qué funcionó, qué no, y cómo lo abordaría mejor en una siguiente iteración).
+
+% -------------------------
+% 6) REFERENCIAS (APA, solo dos)
+% -------------------------
+\section{Referencias}
+\bibliographystyle{apacite}
+\bibliography{referencias}
+
+% -------------------------
+% 7) ANEXO (no cuenta para 2-3 hojas del informe principal)
+% -------------------------
+\appendix
+\section{Anexo}
+Use esta sección solo si necesita profundizar procedimientos o agregar evidencias parciales. Si existe código, la pauta sugiere NO incluirlo en el cuerpo principal; aquí puede agregar solo partes importantes o procedimientos relevantes.
+
+\subsection{Bitácora de trabajo}
+\begin{itemize}
+    \item Día 1 (AAAA-MM-DD): Descripción breve de actividades realizadas, acuerdos, decisiones y avances.
+    \item Día 2 (AAAA-MM-DD): Avances, problemas encontrados, cómo se resolvieron o próximos pasos.
+\end{itemize}
+
+\end{document}
