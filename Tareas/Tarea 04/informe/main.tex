@@ -1,0 +1,88 @@
+\documentclass[10pt]{article}
+
+% -------------------------
+% PAQUETES
+% -------------------------
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{apacite}
+\usepackage{microtype}
+
+% -------------------------
+% CONFIGURACION DE PAGINA
+% -------------------------
+\geometry{
+ top=1.5cm,
+ left=1.5cm,
+ right=1.5cm,
+ bottom=2cm
+}
+\setstretch{1.0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% -------------------------
+% FIGURAS / TABLAS
+% -------------------------
+\captionsetup{font=small, labelfont=bf}
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Tabla}
+
+% En Overleaf el proyecto quedó con `main.tex` en la raíz del proyecto,
+% por eso la carpeta de figuras `resultados/` está también en la raíz.
+\graphicspath{{resultados/}}
+
+% -------------------------
+% IDENTIFICACION DE GRUPO
+% -------------------------
+\title{\textbf{Analisis PCA del Boston Housing}}
+
+\author{
+Natalay Huaiquinao, Carlos Ulloa\\
+\texttt{nhuaiquinao2021@alu.uct.cl, carlos.ulloa2020@alu.uct.cl}
+}
+
+\date{\vspace{-0.6em}Tarea 4, INFO1184, Semestre I-2026}
+
+% -------------------------
+\begin{document}
+
+\maketitle
+\vspace{-1.0cm}
+
+\begin{abstract}
+\input{secciones/resumen}
+\end{abstract}
+
+\section{Introduccion}
+\input{secciones/introduccion}
+
+\section{Fundamentos de teoria}
+\input{secciones/fundamentos}
+
+\section{Desarrollo del trabajo}
+\input{secciones/desarrollo}
+
+\section{Discusion y reflexion}
+\input{secciones/discusion}
+
+\section{Conclusiones}
+\input{secciones/conclusiones}
+
+\section{Referencias}
+\bibliographystyle{apacite}
+\bibliography{referencias}
+
+\appendix
+\section{Anexo}
+\input{secciones/anexo}
+
+\end{document}

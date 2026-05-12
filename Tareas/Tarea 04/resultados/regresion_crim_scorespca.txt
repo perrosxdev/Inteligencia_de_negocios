@@ -1,0 +1,22 @@
+
+Call:
+lm(formula = crim ~ PC1 + PC2 + PC3 + PC4, data = pca_scores)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-13.495  -1.747   0.052   1.632  59.959 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  3.61352    0.23896  15.122  < 2e-16 ***
+PC1          2.15916    0.09664  22.343  < 2e-16 ***
+PC2         -3.45136    0.20645 -16.718  < 2e-16 ***
+PC3          0.59401    0.22022   2.697  0.00722 ** 
+PC4          0.64831    0.26176   2.477  0.01359 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 5.375 on 501 degrees of freedom
+Multiple R-squared:  0.6126,	Adjusted R-squared:  0.6095 
+F-statistic:   198 on 4 and 501 DF,  p-value: < 2.2e-16
+
