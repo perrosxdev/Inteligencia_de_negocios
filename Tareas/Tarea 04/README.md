@@ -4,7 +4,7 @@ Este es el archivo principal de orientación para la carpeta `Tarea 04`.
 
 ## Enunciado de la tarea
 
-El detalle de la consigna, preguntas y contexto original está en [READMETarea04.md](READMETarea04.md).
+El detalle de la tarea está en [READMETarea04.md](READMETarea04.md).
 
 ## Estructura visible
 
