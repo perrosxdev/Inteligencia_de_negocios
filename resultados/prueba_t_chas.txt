@@ -1,0 +1,12 @@
+
+	Welch Two Sample t-test
+
+data:  medv by chas
+t = -3.1133, df = 36.876, p-value = 0.003567
+alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
+95 percent confidence interval:
+ -10.476831  -2.215483
+sample estimates:
+mean in group 0 mean in group 1 
+       22.09384        28.44000 
+

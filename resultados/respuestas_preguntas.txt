@@ -1,0 +1,9 @@
+Resumen automático de resultados - Boston Housing
+
+P1. Variables con atípicos detectados: black=77, zn=68, crim=66, medv=40, chas=35, rm=30, ptratio=15, lstat=7, dis=5.
+P2. Las viviendas más baratas se identifican en resultados/tabla_suburbios_bajo_precio.csv.
+P3. Correlación rm-medv = 0.6954; pendiente del modelo lineal = 9.1021; R2 = 0.4835.
+P4. Medv promedio por chas: 0 = 22.09, 1 = 28.44; p-value t-test = 0.003567.
+P5. Correlación lstat-medv = -0.7377; pendiente del modelo lineal = -0.9500; R2 = 0.5441.
+P6. Modelo múltiple para crim: R2 = 0.4337, R2 ajustado = 0.4257; modelo PCA (PC1-PC4) R2 = 0.6126.
+PCA. PC1 explica 51.06%, PC2 11.19% y se requieren 5 componentes para llegar al 80% de varianza.

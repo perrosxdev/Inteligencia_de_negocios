@@ -6,6 +6,9 @@
 # ==============================================================================
 
 # ---- LIBRERÍAS ---------------------------------------------------------------
+# Establecer directorio de trabajo
+setwd("d:/Perrosxdev/Inteligencia_de_negocios/Tareas/Tarea 04")
+
 if (!require(MASS))      install.packages("MASS")
 if (!require(ggplot2))   install.packages("ggplot2")
 if (!require(corrplot))  install.packages("corrplot")
@@ -154,6 +157,29 @@ write.csv(round(var_explicada, 4), file = "resultados/varianza_acumulada.csv")
 n_comp_80 <- which(var_explicada >= 0.80)[1]
 cat("\nComponentes necesarios para explicar ≥80% de varianza:", n_comp_80, "\n")
 write(n_comp_80, file = "resultados/n_componentes_80pct.txt")
+
+# -- 4.2 Scree Plot (gráfico de varianza explicada) --------------------------
+varianza_df <- data.frame(
+  Componente = factor(paste0("PC", seq_along(summary(pca_result)$importance[2, ])),
+                      levels = paste0("PC", seq_along(summary(pca_result)$importance[2, ]))),
+  Varianza = as.numeric(summary(pca_result)$importance[2, ]) * 100,
+  Acumulada = as.numeric(summary(pca_result)$importance[3, ]) * 100
+)
+
+p_scree <- ggplot(varianza_df, aes(x = Componente, y = Varianza, group = 1)) +
+  geom_col(fill = "steelblue", alpha = 0.8) +
+  geom_line(aes(y = Acumulada), color = "red", linewidth = 1) +
+  geom_point(aes(y = Acumulada), color = "red", size = 2.5) +
+  geom_hline(yintercept = 80, linetype = "dashed", color = "gray40", linewidth = 0.7) +
+  geom_text(aes(label = sprintf("%.1f%%", Varianza)), vjust = -0.5, size = 2.8) +
+  labs(title = "Scree Plot - Varianza Explicada por Componente Principal",
+       x = "Componente Principal",
+       y = "Varianza Explicada (%)") +
+  ylim(0, 100) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave("resultados/scree_plot.pdf", plot = p_scree, width = 9, height = 6)
 
 # -- 4.3 Cargas (Loadings) de los componentes ---------------------------------
 cat("\n--- Cargas de PC1 y PC2 ---\n")

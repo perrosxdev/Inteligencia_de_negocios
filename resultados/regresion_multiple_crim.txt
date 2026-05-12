@@ -1,0 +1,26 @@
+
+Call:
+lm(formula = crim ~ rad + tax + lstat + dis + medv + indus + 
+    nox, data = df)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-8.477 -2.312 -0.449  1.197 75.453 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  6.4181125  3.8436692   1.670   0.0956 .  
+rad          0.5445620  0.0843864   6.453  2.6e-10 ***
+tax          0.0000853  0.0050384   0.017   0.9865    
+lstat        0.1503142  0.0700010   2.147   0.0323 *  
+dis         -0.6041275  0.2375149  -2.544   0.0113 *  
+medv        -0.1252165  0.0497519  -2.517   0.0122 *  
+indus       -0.1319463  0.0817858  -1.613   0.1073    
+nox         -6.0537134  4.7605699  -1.272   0.2041    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.518 on 498 degrees of freedom
+Multiple R-squared:  0.4337,	Adjusted R-squared:  0.4257 
+F-statistic: 54.48 on 7 and 498 DF,  p-value: < 2.2e-16
+

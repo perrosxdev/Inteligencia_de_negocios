@@ -25,8 +25,3 @@ Tarea 04/
    ├─ contribucion_PC1_PC2.pdf
    └─ ...
 ```
-
-## Qué contiene cada cosa
-
-- `Tarea04.R`: script de R que genera tablas, pruebas y figuras.
-- `resultados/`: salida del script; aquí están los 
