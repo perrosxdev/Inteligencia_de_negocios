@@ -2,6 +2,10 @@
 
 Este es el archivo principal de orientación para la carpeta `Tarea 04`.
 
+## Enunciado de la tarea
+
+El detalle de la consigna, preguntas y contexto original está en [READMETarea04.md](READMETarea04.md).
+
 ## Estructura visible
 
 ```text
@@ -25,5 +29,4 @@ Tarea 04/
 ## Qué contiene cada cosa
 
 - `Tarea04.R`: script de R que genera tablas, pruebas y figuras.
-- `resultados/`: salida del script; aquí están los PDFs, CSV y TXT que respaldan el análisis.
-- `READMETarea04.md`: enunciado y preguntas originales de la tarea.
+- `resultados/`: salida del script; aquí están los 
