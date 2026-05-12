@@ -36,8 +36,8 @@
 \renewcommand{\figurename}{Fig.}
 \renewcommand{\tablename}{Tabla}
 
-% En Overleaf el proyecto quedó con `main.tex` en la raíz del proyecto,
-% por eso la carpeta de figuras `resultados/` está también en la raíz.
+% El proyecto mantiene las secciones y la bibliografía dentro de `informe/`.
+% Las figuras quedan en `resultados/` porque ese directorio sí está en la raíz.
 \graphicspath{{resultados/}}
 
 % -------------------------
@@ -59,30 +59,30 @@ Natalay Huaiquinao, Carlos Ulloa\\
 \vspace{-1.0cm}
 
 \begin{abstract}
-\input{secciones/resumen}
+\input{informe/secciones/resumen}
 \end{abstract}
 
 \section{Introduccion}
-\input{secciones/introduccion}
+\input{informe/secciones/introduccion}
 
 \section{Fundamentos de teoria}
-\input{secciones/fundamentos}
+\input{informe/secciones/fundamentos}
 
 \section{Desarrollo del trabajo}
-\input{secciones/desarrollo}
+\input{informe/secciones/desarrollo}
 
 \section{Discusion y reflexion}
-\input{secciones/discusion}
+\input{informe/secciones/discusion}
 
 \section{Conclusiones}
-\input{secciones/conclusiones}
+\input{informe/secciones/conclusiones}
 
 \section{Referencias}
 \bibliographystyle{apacite}
-\bibliography{referencias}
+\bibliography{informe/referencias}
 
 \appendix
 \section{Anexo}
-\input{secciones/anexo}
+\input{informe/secciones/anexo}
 
 \end{document}

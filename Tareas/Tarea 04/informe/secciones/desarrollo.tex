@@ -19,14 +19,7 @@ Para el PCA se excluyeron \textit{chas} y \textit{medv} del bloque explicativo, 
 \subsection{Fase 4: modelado PCA}
 El scree plot confirma que el primer componente explica 51.06\% de la varianza y que cinco componentes acumulan 80\%. Esto permite reducir la dimensionalidad sin perder informaci\'on esencial.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.78\textwidth]{scree_plot.pdf}
-    \caption{Varianza explicada por componente principal.}
-    \label{fig:scree}
-\end{figure}
-
-La estructura de cargas indica que PC1 concentra principalmente variables asociadas a urbanizaci\'on y presi\'on urbana, como \textit{indus}, \textit{nox}, \textit{rad}, \textit{tax}, \textit{age} y \textit{lstat}, mientras que \textit{rm} y \textit{dis} se mueven en sentido contrario. En t\'erminos interpretativos, PC1 puede leerse como un gradiente de deterioro/urbanizaci\'on versus calidad residencial.
+La estructura de cargas indica que PC1 concentra principalmente variables asociadas a urbanizaci\'on y presi\'on urbana, como \textit{indus}, \textit{nox}, \textit{rad}, \textit{tax}, \textit{age} y \textit{lstat}, mientras que \textit{rm} y \textit{dis} se mueven en sentido contrario. En t\'erminos interpretativos, PC1 puede leerse como un gradiente de deterioro/urbanizaci\'on versus calidad residencial. Este resultado es consistente con la varianza explicada: PC1 aporta 51.06\% y cinco componentes concentran m\'as de 80\%.
 
 \subsection{Fase 5: evaluaci\'on de las preguntas}
 La pregunta sobre suburbios m\'as baratos se responde con el ranking de \textit{medv}: las observaciones 399, 406, 401, 400 y 415 est\'an entre las de menor valor, con precios entre 5.0 y 7.0. La Tabla~\ref{tab:respuestas} sintetiza las evidencias principales para cada pregunta.

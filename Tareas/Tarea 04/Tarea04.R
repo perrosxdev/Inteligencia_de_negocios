@@ -108,17 +108,6 @@ corr_matrix <- cor(df)
 print(round(corr_matrix, 2))
 write.csv(round(corr_matrix,2), file = "resultados/tabla_correlaciones.csv")
 
-pdf("resultados/correlograma.pdf", width = 8, height = 7)
-ggcorrplot(corr_matrix,
-           method = "circle",
-           type = "lower",
-           lab = TRUE,
-           lab_size = 2.5,
-           colors = c("#d73027", "white", "#1a9850"),
-           title = "Matriz de Correlación - Boston Dataset",
-           ggtheme = theme_minimal())
-dev.off()
-
 # ==============================================================================
 # FASE 3 - PREPARACIÓN DE LOS DATOS
 # ==============================================================================
@@ -154,17 +143,6 @@ cat("--- Resumen del PCA ---\n")
 pca_summary <- summary(pca_result)
 print(pca_summary)
 capture.output(pca_summary, file = "resultados/summary_pca.txt")
-
-# -- 4.2 Varianza explicada (Scree Plot) ---------------------------------------
-pdf("resultados/scree_plot.pdf", width = 7, height = 5)
-fviz_eig(pca_result,
-         addlabels = TRUE,
-         ylim = c(0, 55),
-         barfill = "steelblue",
-         barcolor = "steelblue",
-         linecolor = "red",
-         title = "Scree Plot - Varianza Explicada por Componente")
-dev.off()
 
 # Varianza acumulada
 var_explicada <- summary(pca_result)$importance[3, ]
@@ -214,26 +192,7 @@ pdf("resultados/cargas_barras_PC1_PC2.pdf", width = 12, height = 5)
 grid.arrange(p_load, p_load2, ncol = 2)
 dev.off()
 
-# -- 4.4 Biplot (variables + observaciones) ------------------------------------
-pdf("resultados/biplot_PCA.pdf", width = 6, height = 6)
-fviz_pca_biplot(pca_result,
-                repel = TRUE,
-                col.var = "red",
-                col.ind = "steelblue",
-                alpha.ind = 0.4,
-                title = "Biplot PCA - Boston Dataset")
-dev.off()
-
-# -- 4.5 Círculo de correlación de variables -----------------------------------
-pdf("resultados/circulo_correlacion.pdf", width = 6, height = 6)
-fviz_pca_var(pca_result,
-             col.var = "contrib",
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-             repel = TRUE,
-             title = "Círculo de Correlación - Variables en PCA")
-dev.off()
-
-# -- 4.6 Contribución de variables a PC1 y PC2 ---------------------------------
+# -- 4.4 Contribución de variables a PC1 y PC2 ---------------------------------
 p_contrib1 <- fviz_contrib(pca_result, choice = "var", axes = 1,
                            title = "Contribución de variables a PC1")
 p_contrib2 <- fviz_contrib(pca_result, choice = "var", axes = 2,
@@ -243,7 +202,7 @@ ggsave("resultados/contrib_pc1.pdf", plot = p_contrib1, width = 7, height = 5)
 ggsave("resultados/contrib_pc2.pdf", plot = p_contrib2, width = 7, height = 5)
 ggsave("resultados/contribucion_PC1_PC2.pdf", plot = g2, width = 12, height = 5)
 
-# -- 4.7 Scores (coordenadas de las observaciones en el espacio PCA) -----------
+# -- 4.5 Scores (coordenadas de las observaciones en el espacio PCA) -----------
 pca_scores <- as.data.frame(pca_result$x[, 1:4])
 pca_scores$medv <- df$medv
 pca_scores$chas  <- as.factor(df$chas)
