@@ -27,8 +27,8 @@ import os
 # El script busca el Excel en la misma carpeta donde está este archivo.
 # Si lo mueves a otra ubicación, cambia DATASET_PATH manualmente.
 SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
-DATASET_PATH = r'C:\Users\macka\Desktop\Inteligencia de Negocios\Tarea 6\dataset-uci.xlsx'
-OUTPUT_DIR   = r'C:\Users\macka\Desktop\Inteligencia de Negocios\Tarea 6' + os.sep
+DATASET_PATH = r'C:\Users\macka\Desktop\Inteligencia de Negocios\Tarea 06\dataset-uci.xlsx'
+OUTPUT_DIR   = r'C:\Users\macka\Desktop\Inteligencia de Negocios\Tarea 06' + os.sep
 
 # ============================================================
 # CONFIGURACIÓN GLOBAL
