@@ -173,4 +173,4 @@ ggplot2
   https://www.the-modeling-agency.com/crisp-dm.pdf
 
 ## Ejecucion Script en python
-➡️ [INSTRUCCIONES.md](./INSTRUCCIONES.md)
+➡️ [INSTRUCCIONES.md](./instrucciones.md)
