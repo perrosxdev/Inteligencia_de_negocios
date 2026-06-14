@@ -63,14 +63,10 @@ figs/
 
 Archivos generados:
 
-- missing_values.png
-- target_distribution.png
-- edad_distribuciones.png
-- prevalencia_sintomas.png
-- correlacion.png
-- sintomas_vs_target.png
-- curva_validacion.png
-- matriz_confusion.png
-- roc_curve.png
-- importancia_variables.png
 - arbol_decision.png
+- comparacion_preparacion.png
+- correlacion.png
+- curva_validacion.png
+- eda_overview.png
+- evaluacion_overview.png
+- importancia_variables.png
